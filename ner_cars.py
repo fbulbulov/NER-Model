@@ -61,7 +61,7 @@ unaffected_pipes = [pipe for pipe in nlp.pipe_names if pipe not in pipe_exceptio
 
 
 with nlp.disable_pipes(*unaffected_pipes):
-    for iteration in range(60):
+    for iteration in range(100):
         print("Iteration #", iteration)
         # Data shuffle for each iteration
         random.shuffle(train_data)
@@ -87,8 +87,7 @@ nlp_updated = spacy.load(output_dir)
 
 #Testing the model:
 doc = nlp_updated("Research before you buy or lease a new Tesla vehicle with expert ratings")
-print("entities:", [(ent.text, ent.label_) for ent in doc.ents]
-
+print("entities:", [(ent.text, ent.label_) for ent in doc.ents])
 
 doc = nlp_updated("Read the latest Mercedes new car reviews, put through their paces by our team of expert road testers, covering performance, depreciation, servicing cost, ")
 print("entities:", [(ent.text, ent.label_) for ent in doc.ents])
